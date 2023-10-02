@@ -1,0 +1,109 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 16.0
+-- Dumped by pg_dump version 16.0
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Name: test; Type: DATABASE; Schema: -; Owner: postgres
+--
+
+CREATE DATABASE test WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE_PROVIDER = libc LOCALE = 'Russian_Russia.1251';
+
+
+ALTER DATABASE test OWNER TO postgres;
+
+\connect test
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: Query; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Query" (
+    "Query_guid" character varying NOT NULL,
+    "StartDateTime" date,
+    "EndDateTime" date,
+    "CreateDateTime" date,
+    "User_guid" character varying,
+    "Percent" integer
+);
+
+
+ALTER TABLE public."Query" OWNER TO postgres;
+
+--
+-- Name: Result; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Result" (
+    "Query_guid" character varying NOT NULL,
+    user_guid character varying,
+    "Count_sign_in" integer
+);
+
+
+ALTER TABLE public."Result" OWNER TO postgres;
+
+--
+-- Data for Name: Query; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."Query" ("Query_guid", "StartDateTime", "EndDateTime", "CreateDateTime", "User_guid", "Percent") FROM stdin;
+\.
+
+
+--
+-- Data for Name: Result; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."Result" ("Query_guid", user_guid, "Count_sign_in") FROM stdin;
+\.
+
+
+--
+-- Name: Query Query_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Query"
+    ADD CONSTRAINT "Query_pkey" PRIMARY KEY ("Query_guid");
+
+
+--
+-- Name: Result Result_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Result"
+    ADD CONSTRAINT "Result_pkey" PRIMARY KEY ("Query_guid");
+
+
+--
+-- PostgreSQL database dump complete
+--
+
